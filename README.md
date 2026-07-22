@@ -1,6 +1,5 @@
-# Shuaibuins205scientificcalc
 
-# Scientific Calculator
+Scientific Calculator
 
 A modern Scientific Calculator developed using **HTML, CSS, and JavaScript**. The application performs both basic arithmetic and scientific calculations through a clean, responsive, and user-friendly interface.
 
@@ -35,32 +34,43 @@ A modern Scientific Calculator developed using **HTML, CSS, and JavaScript**. Th
 - Responsive Design
 - Modern User Interface
 
-Technologies Used
+
+
+ Technologies Used
 
 - HTML5
 - CSS3
-- JavaScript 
+- JavaScript (ES6)
 - Docker
-Project Structure
+- Nginx
+
+ Project Structure
+
+
 Scientific-Calculator/
-│── ins205calc.html
-│── ins205calc.css
-│── ins205calc.js
+│── index.html
+│── style.css
+│── script.js
 │── Dockerfile
-│── README.md
-How to Run the Project
 
-### Method 1
 
-Open **ins205calc.html in any modern web browser.
+
+ How to Run the Project
+
+ Method 1
+
+Open scientificcal.html in any modern web browser.
+
 
 Running with Docker
- Build the Docker Image
+
+Build the Docker Image
 
 bash
 docker build -t scientific-calculator .
 
-Run the Docker Container
+
+ Run the Docker Container
 
 bash
 docker run -d -p 8080:80 scientific-calculator
@@ -68,8 +78,11 @@ docker run -d -p 8080:80 scientific-calculator
 
 Open your browser and visit:
 
+
 http://localhost:8080
-Future Improvements
+
+ Future Improvements
+
 - Dark and Light Mode
 - Scientific Expression Parser
 - Calculation History
@@ -83,13 +96,15 @@ Future Improvements
 
  Author
 
-Name: Halliru Shuaibu
+Name: Halliru Shuaibu Shuaibu
 
-Course:INS205
+Matric-No: UJ/2025/CP/0158
+
+Course: INS205
 
 Project: Scientific Calculator Web Application
-License
+
+ License
 
 This project was developed for academic purposes as part of the INS205 course assignment.
 ````
- 
