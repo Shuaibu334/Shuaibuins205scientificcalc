@@ -1,0 +1,278 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scientific Calculator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+}
+
+.calculator{
+    width:420px;
+    background:#1b263b;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,.5);
+}
+
+#screen{
+    width:70%;
+    height:90px;
+    border:none;
+    outline:none;
+    font-size:28px;
+    text-align:right;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
+    background:#0d1b2a;
+    color:#00ffcc;
+}
+
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:10px;
+}
+
+button{
+    height:55px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:bold;
+    background:#415a77;
+    color:white;
+    transition:.3s;
+}
+
+button:hover{
+    background:#5f7ea3;
+    transform:scale(1.05);
+}
+
+.operator{
+    background:#ff9800;
+}
+
+.operator:hover{
+    background:#ffb300;
+}
+
+.equal{
+    background:#00c853;
+}
+
+.equal:hover{
+    background:#00e676;
+}
+
+@media(max-width:500px){
+
+.calculator{
+width:95%;
+}
+
+button{
+height:50px;
+font-size:15px;
+}
+
+#screen{
+font-size:22px;
+height:65px;
+}
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="calculator">
+
+<input type="text" id="screen" readonly>
+
+<div class="buttons">
+
+<button class="operator" onclick="clearScreen()">C</button>
+<button class="operator" onclick="deleteLast()">⌫</button>
+<button class="operator" onclick="append('(')">(</button>
+<button class="operator" onclick="append(')')">)</button>
+<button class="operator" onclick="append('/')">÷</button>
+<button onclick="scientific('sin')">sin</button>
+<button onclick="scientific('cos')">cos</button>
+
+<button onclick="scientific('tan')">tan</button>
+<button onclick="scientific('log')">log</button>
+<button onclick="scientific('ln')">ln</button>
+<button onclick="scientific('sqrt')">√</button>
+<button onclick="append('7')">7</button>
+<button onclick="append('8')">8</button>
+<button onclick="append('9')">9</button>
+
+<button class="operator" onclick="append('*')">×</button>
+<button onclick="scientific('square')">x²</button>
+<button onclick="scientific('cube')">x³</button>
+<button onclick="scientific('power')">xʸ</button>
+<button onclick="append('4')">4</button>
+<button onclick="append('5')">5</button>
+<button onclick="append('6')">6</button>
+
+<button class="operator" onclick="append('-')">−</button>
+<button onclick="scientific('factorial')">x!</button>
+<button onclick="append(Math.PI)">π</button>
+<button onclick="append(Math.E)">e</button>
+<button onclick="append('%')">%</button>
+<button onclick="append('1')">1</button>
+<button onclick="append('2')">2</button>
+
+<button onclick="append('3')">3</button>
+<button class="operator" onclick="append('+')">+</button>
+<button onclick="append('0')">0</button>
+<button onclick="append('.')">.</button>
+<button class="equal" onclick="calculate()">=</button>
+
+</div>
+
+</div>
+
+<script>
+
+const screen=document.getElementById("screen");
+
+function append(value){
+screen.value+=value;
+}
+
+function clearScreen(){
+screen.value="";
+}
+
+function deleteLast(){
+screen.value=screen.value.slice(0,-1);
+}
+
+function calculate(){
+
+try{
+
+screen.value=eval(screen.value);
+
+}
+
+catch{
+
+screen.value="Error";
+
+}
+
+}
+
+function scientific(type){
+
+let x=parseFloat(screen.value);
+
+if(isNaN(x)&&type!="power") return;
+
+switch(type){
+
+case "sin":
+screen.value=Math.sin(x*Math.PI/180);
+break;
+
+case "cos":
+screen.value=Math.cos(x*Math.PI/180);
+break;
+
+case "tan":
+screen.value=Math.tan(x*Math.PI/180);
+break;
+
+case "log":
+screen.value=Math.log10(x);
+break;
+
+case "ln":
+screen.value=Math.log(x);
+break;
+
+case "sqrt":
+screen.value=Math.sqrt(x);
+break;
+
+case "square":
+screen.value=Math.pow(x,2);
+break;
+
+case "cube":
+screen.value=Math.pow(x,3);
+break;
+
+case "power":
+screen.value+="**";
+break;
+
+case "factorial":
+
+if(x<0){
+screen.value="Error";
+return;
+}
+
+let fact=1;
+
+for(let i=1;i<=x;i++){
+fact*=i;
+}
+
+screen.value=fact;
+
+break;
+
+}
+
+}
+
+document.addEventListener("keydown",function(e){
+
+let key=e.key;
+
+if(!isNaN(key)||["+","-","*","/",".","(",")"].includes(key)){
+append(key);
+}
+
+if(key==="Enter"){
+calculate();
+}
+
+if(key==="Backspace"){
+deleteLast();
+}
+
+if(key==="Escape"){
+clearScreen();
+}
+
+});
+
+</script>
+
+</body>
+</html>
